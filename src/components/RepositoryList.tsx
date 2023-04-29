@@ -20,7 +20,7 @@ const RepositoryList: React.FC<Props> = (props) => {
       return <CircularProgress />;
     }
     return (
-      <List dense={true}>
+      <List dense={true} sx={{ overflow: "auto", height: "75vh" }}>
         {repositories.map((repository: string) => (
           <ListItem key={repository}>
             <ListItemText primary={repository} />

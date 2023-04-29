@@ -20,7 +20,7 @@ const OrganizationList: React.FC<Props> = (props) => {
       return <CircularProgress />;
     }
     return (
-      <List dense={true}>
+      <List dense={true} sx={{ overflow: "auto", height: "75vh" }}>
         {organizations.map((organization: string) => (
           <ListItem key={organization}>
             <ListItemText primary={organization} />

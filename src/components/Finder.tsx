@@ -3,6 +3,7 @@ import SearchField from "./SearchField";
 import RepositoryList from "./RepositoryList";
 import OrganizationList from "./OrganizationList";
 import axios from "axios";
+import { Grid } from "@mui/material";
 
 const Finder: React.FC = () => {
   const [repositories, setRepositories] = useState([]);
@@ -40,8 +41,12 @@ const Finder: React.FC = () => {
   return (
     <div>
       <SearchField onSearch={handleSearch} />
-      <RepositoryList repositories={repositories} loading={loading} />
-      <OrganizationList organizations={organizations} loading={loading} />
+      <Grid direction="row" container columnGap={5}>
+        <Grid item xs={6}>
+          <RepositoryList repositories={repositories} loading={loading} />
+        </Grid>
+        <OrganizationList organizations={organizations} loading={loading} />
+      </Grid>
     </div>
   );
 };
