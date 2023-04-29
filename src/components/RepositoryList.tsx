@@ -1,18 +1,25 @@
 import React from "react";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 
 interface Props {
   repositories: string[];
+  loading: boolean;
 }
 
 const RepositoryList: React.FC<Props> = (props) => {
-  const { repositories } = props;
+  const { repositories, loading } = props;
 
-  return (
-    <div>
-      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-        Repositories
-      </Typography>
+  const checkLoaded = () => {
+    if (loading) {
+      return <CircularProgress />;
+    }
+    return (
       <List dense={true}>
         {repositories.map((repository: string) => (
           <ListItem key={repository}>
@@ -20,6 +27,15 @@ const RepositoryList: React.FC<Props> = (props) => {
           </ListItem>
         ))}
       </List>
+    );
+  };
+
+  return (
+    <div>
+      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+        Repositories
+      </Typography>
+      {checkLoaded()}
     </div>
   );
 };

@@ -7,9 +7,11 @@ import axios from "axios";
 const Finder: React.FC = () => {
   const [repositories, setRepositories] = useState([]);
   const [organizations, setOrganizations] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async (username: string) => {
     try {
+      setLoading(true);
       await axios
         .get(`https://api.github.com/users/${username}/repos`)
         .then((response) => {
@@ -32,13 +34,14 @@ const Finder: React.FC = () => {
       setOrganizations([]);
       console.log(err);
     }
+    setLoading(false);
   };
 
   return (
     <div>
       <SearchField onSearch={handleSearch} />
-      <RepositoryList repositories={repositories} />
-      <OrganizationList organizations={organizations} />
+      <RepositoryList repositories={repositories} loading={loading} />
+      <OrganizationList organizations={organizations} loading={loading} />
     </div>
   );
 };

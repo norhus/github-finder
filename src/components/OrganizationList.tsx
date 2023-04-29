@@ -1,18 +1,25 @@
 import React from "react";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 
 interface Props {
   organizations: string[];
+  loading: boolean;
 }
 
 const OrganizationList: React.FC<Props> = (props) => {
-  const { organizations } = props;
+  const { organizations, loading } = props;
 
-  return (
-    <div>
-      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-        Organizations
-      </Typography>
+  const checkLoaded = () => {
+    if (loading) {
+      return <CircularProgress />;
+    }
+    return (
       <List dense={true}>
         {organizations.map((organization: string) => (
           <ListItem key={organization}>
@@ -20,6 +27,15 @@ const OrganizationList: React.FC<Props> = (props) => {
           </ListItem>
         ))}
       </List>
+    );
+  };
+
+  return (
+    <div>
+      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+        Organizations
+      </Typography>
+      {checkLoaded()}
     </div>
   );
 };

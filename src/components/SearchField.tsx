@@ -8,7 +8,7 @@ interface Props {
 const SearchField: React.FC<Props> = (props) => {
   const handleInput = debounce((e: ChangeEvent<HTMLInputElement>) => {
     props.onSearch(e.target.value);
-  }, 1000);
+  }, 750);
 
   return (
     <TextField
