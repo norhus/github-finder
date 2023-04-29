@@ -4,12 +4,13 @@ import { List, ListItem, ListItemText, Typography } from "@mui/material";
 
 const RepositoryList: React.FC = () => {
   const [repositoryNames, setRepositoryNames] = useState([]);
+
   const handleRepositorySearch = (username: string) => {
     axios
       .get(`https://api.github.com/users/${username}/repos`)
       .then((response) => {
         let repositories = response.data.map(
-          (repository: { name: string }) => repository.name as String
+          (repository: { name: string }) => repository.name
         );
         setRepositoryNames(repositories);
       });
