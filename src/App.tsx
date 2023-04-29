@@ -1,13 +1,11 @@
 import React from "react";
 import "./App.css";
-import RepositoryList from "./components/RepositoryList";
-import OrganizationList from "./components/OrganizationList";
+import Finder from "./components/Finder";
 
 function App() {
   return (
     <div className="App">
-      <RepositoryList />
-      <OrganizationList />
+      <Finder />
     </div>
   );
 }
